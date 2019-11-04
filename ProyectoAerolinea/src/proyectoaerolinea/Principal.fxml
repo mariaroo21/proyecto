@@ -81,7 +81,11 @@
             <Label layoutX="29.0" layoutY="539.0" text="Cantidad de pasajeros" />
             <StackPane fx:id="papa" layoutX="242.0" layoutY="28.0" prefHeight="656.0" prefWidth="528.0">
                <children>
-                  <AnchorPane fx:id="hijo" prefHeight="200.0" prefWidth="200.0" />
+                  <AnchorPane fx:id="hijo" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="btncambio" layoutX="14.0" layoutY="492.0" mnemonicParsing="false" onAction="#cambiar" text="Button" />
+                     </children>
+                  </AnchorPane>
                </children>
             </StackPane>
           </children>

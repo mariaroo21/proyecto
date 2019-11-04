@@ -82,6 +82,8 @@ public class FXMLDocumentController implements Initializable {
     private StackPane papa;
     @FXML
     private AnchorPane hijo;
+    @FXML
+    private Button btncambio;
     
 
     /**
@@ -182,11 +184,11 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void abririnicio(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("IniciarSesion.fxml"));
-        Scene scene = stackpanePrincipal.getScene();
+        Scene scene = papa.getScene();
 //        root.translateYProperty().set(scene.getHeight());
 
-        papa.getChildren().clear();
-        papa.getChildren().add(root);
+        stackpanePrincipal.getChildren().clear();
+        stackpanePrincipal.getChildren().add(root);
 //        System.out.println("Si");
 //        FXMLLoader loader = new FXMLLoader(getClass().getResource("IniciarSesion.fxml"));
 //        Parent root = loader.load();
@@ -203,6 +205,25 @@ public class FXMLDocumentController implements Initializable {
 //            stackpanePrincipal.getChildren().remove(anchorpanePrincipal);
 //        });
 //        timeline.play();
+    }
+
+    @FXML
+    private void cambiar(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("IniciarSesion.fxml"));
+        Parent root = loader.load();
+        Scene scene = btncambio.getScene();
+        root.translateYProperty().set(scene.getHeight());
+
+        stackpanePrincipal.getChildren().add(root);
+
+        Timeline timeline = new Timeline();
+        KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
+        KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
+        timeline.getKeyFrames().add(kf);
+        timeline.setOnFinished(t -> {
+            stackpanePrincipal.getChildren().remove(anchorpanePrincipal);
+        });
+        timeline.play();
     }
 
     
